@@ -1,0 +1,429 @@
+:root {
+    --bg-color: #1e1e24;
+    /* Tmavě šedé pozadí */
+    --card-bg: #2b2d31;
+    /* Světlejší šedá pro karty */
+    --text-color: #ffffff;
+    --text-muted: #9ca3af;
+    --primary-color: #6366f1;
+    /* Fialová/Modrá pro navigaci */
+    --water-color: #00f0ff;
+    /* Neonově modrá */
+    --mood-color: #ff477e;
+    /* Růžová/Červená */
+    --good-color: #22c55e;
+    /* Zelená pro dobrou náladu/spánek */
+    --sleep-color: #a855f7;
+    /* Fialová pro spánek */
+    --timer-active: #f59e0b;
+    /* Žlutá pro aktivní měření spánku */
+
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    --radius: 16px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+h1 {
+    font-size: 26px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+#dashboard-title {
+    font-size: 20px;
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+nav {
+    display: flex;
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 6px;
+    box-shadow: var(--shadow);
+}
+
+.nav-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.nav-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.view {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+}
+
+.card h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+}
+
+.card h2 span {
+    font-size: 16px;
+    font-weight: normal;
+    color: var(--text-muted);
+}
+
+/* Spánek - Měření */
+.sleep-display {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.huge-number {
+    font-size: 64px;
+    font-weight: bold;
+    color: white;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+.sleep-unit {
+    font-size: 20px;
+    color: var(--text-muted);
+    font-weight: bold;
+}
+
+.sleep-time-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    background-color: var(--bg-color);
+    padding: 12px 15px;
+    border-radius: 12px;
+}
+
+.sleep-time-container label {
+    font-weight: bold;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.timer-btn {
+    background-color: var(--card-bg);
+    border: 1px solid #4b5563;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.timer-btn.active {
+    background-color: var(--timer-active);
+    border-color: var(--timer-active);
+    color: black;
+}
+
+.water-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.drop {
+    width: 32px;
+    height: 32px;
+    fill: #4b5563;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.drop.active {
+    fill: var(--water-color);
+    filter: drop-shadow(0 0 6px rgba(0, 240, 255, 0.6));
+}
+
+.slider-container {
+    padding: 10px 0;
+}
+
+/* Custom Sliders */
+.custom-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    background: #4b5563;
+    outline: none;
+    transition: background 0.3s ease;
+}
+
+.custom-slider:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.custom-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border: 3px solid var(--card-bg);
+}
+
+.custom-slider:disabled::-webkit-slider-thumb {
+    cursor: not-allowed;
+    background: #9ca3af;
+}
+
+#mood-slider {
+    accent-color: var(--mood-color);
+    background: linear-gradient(to right, var(--mood-color) 44.44%, #4b5563 44.44%);
+}
+
+.filter-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.filter-btn {
+    flex: 1;
+    background-color: var(--card-bg);
+    border: none;
+    color: white;
+    padding: 12px 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.filter-sleep.active {
+    background-color: var(--sleep-color);
+    opacity: 1;
+}
+
+.filter-water.active {
+    background-color: var(--water-color);
+    color: black;
+    opacity: 1;
+}
+
+.filter-mood.active {
+    background-color: var(--mood-color);
+    opacity: 1;
+}
+
+/* Dynamický kalendář hlavička */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    padding: 0 5px;
+}
+
+#calendar-month-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+.month-nav-btn {
+    background: var(--card-bg);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.2s;
+}
+
+.month-nav-btn:hover {
+    background: var(--primary-color);
+}
+
+/* Hlavička pro dny v týdnu */
+.weekdays-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-bottom: 8px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--text-muted);
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+.day-cell {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    box-shadow: var(--shadow);
+    padding: 5px;
+    transition: transform 0.2s;
+    cursor: pointer;
+    border: 2px solid transparent;
+    position: relative;
+    /* Pro absolutní pozicování ikonek nálady, kdyby bylo dál potřeba */
+}
+
+/* Prázdné políčka na začátku měsíce */
+.empty-day {
+    background-color: transparent;
+    box-shadow: none;
+    pointer-events: none;
+    cursor: default;
+}
+
+.day-cell:hover:not(.empty-day) {
+    transform: scale(1.05);
+    border-color: #4b5563;
+}
+
+/* Dnešní a vybraný den */
+.day-cell.dnes {
+    border: 2px solid #3b82f6;
+}
+
+/* Modré ohraničení pro dnešní den */
+.day-cell.vybrano {
+    border: 2px solid var(--primary-color);
+}
+
+.day-number {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    pointer-events: none;
+}
+
+.day-value {
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    pointer-events: none;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* Neaktivní den (nemá data a ukazuje se tenká pomlčka) */
+.day-value.empty-val {
+    color: #4b5563;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+/* --- Responzivita pro malé displeje (mobily) --- */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .app-container {
+        gap: 10px;
+    }
+
+    .weekdays-grid,
+    .calendar-grid {
+        gap: 2px;
+        /* Dny budou mnohem blíž u sebe */
+    }
+
+    .weekdays-grid {
+        font-size: 10px;
+        /* Zmenšení hlavičky dnů */
+    }
+
+    .day-cell {
+        padding: 2px;
+        /* Maximální rozšíření plochy políčka */
+    }
+
+    .day-number {
+        font-size: 9px;
+        margin-bottom: 2px;
+    }
+
+    .day-value {
+        font-size: 13px;
+        /* Zmenšení hodnot, aby se nerozbíjely */
+    }
+}

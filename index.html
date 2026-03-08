@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Health Tracker</h1>
+            <nav>
+                <button id="nav-dashboard" class="nav-btn active">Dashboard</button>
+                <button id="nav-calendar" class="nav-btn">Kalendář</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- DASHBOARD SEKCE -->
+            <section id="view-dashboard" class="view active">
+                <h2 id="dashboard-title">Dnešní přehled</h2>
+
+                <div class="card">
+                    <h2>Spánek</h2>
+                    <div class="sleep-display">
+                        <span class="huge-number" id="sleep-value-display">8.0</span>
+                        <span class="sleep-unit">hod</span>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" id="sleep-slider" min="0" max="12" step="0.5" value="8"
+                            class="custom-slider">
+                    </div>
+                    <div class="sleep-time-container">
+                        <label>MĚŘENÍ:</label>
+                        <button id="sleep-timer-btn" class="timer-btn">
+                            <span class="icon">🌙</span> <span id="timer-text">Jdu spát</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Voda <span id="water-status">0/8</span></h2>
+                    <div class="water-container" id="water-drops">
+                        <!-- Zde se vygeneruje 8 kapek přes JS -->
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Jak se cítíš? <span id="mood-status">5/10</span></h2>
+                    <div class="slider-container">
+                        <input type="range" id="mood-slider" min="1" max="10" value="5" class="custom-slider">
+                    </div>
+                </div>
+            </section>
+
+            <!-- KALENDÁŘ SEKCE -->
+            <section id="view-calendar" class="view" style="display: none;">
+                <div class="filter-container">
+                    <button class="filter-btn filter-sleep" data-filter="spanek">Spánek</button>
+                    <button class="filter-btn filter-water active" data-filter="voda">Voda</button>
+                    <button class="filter-btn filter-mood" data-filter="nalada">Nálada</button>
+                </div>
+
+                <div class="calendar-header">
+                    <button id="prev-month" class="month-nav-btn">&lt;</button>
+                    <h2 id="calendar-month-title">Leden 2026</h2>
+                    <button id="next-month" class="month-nav-btn">&gt;</button>
+                </div>
+
+                <!-- Dny v týdnu (PO - NE) -->
+                <div class="weekdays-grid">
+                    <div>PO</div>
+                    <div>ÚT</div>
+                    <div>ST</div>
+                    <div>ČT</div>
+                    <div>PÁ</div>
+                    <div>SO</div>
+                    <div>NE</div>
+                </div>
+
+                <div class="calendar-grid" id="calendar-grid">
+                    <!-- Zde se dynamicky vygenerují dny přes JS -->
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
