@@ -1,4 +1,4 @@
-// --- Globální proměnné a stav ---
+// Globální proměnné a stav
 let dnesniDatum = "";
 let editovaneDatum = "";
 let vsechnaData = {};
@@ -13,7 +13,7 @@ const nazvyMesicu = ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen",
 let meriSpanek = false;
 let casUsnuti = null;
 
-// --- HTML Elementy ---
+// HTML Elementy
 const navDashboard = document.getElementById("nav-dashboard");
 const navCalendar = document.getElementById("nav-calendar");
 const viewDashboard = document.getElementById("view-dashboard");
@@ -39,7 +39,7 @@ const calendarMonthTitle = document.getElementById("calendar-month-title");
 const btnPrevMonth = document.getElementById("prev-month");
 const btnNextMonth = document.getElementById("next-month");
 
-// --- Funkce pro Data a LocalStorage ---
+// Funkce pro Data a LocalStorage
 
 function ziskejDnesniDatum() {
     let dnes = new Date();
@@ -97,7 +97,7 @@ function ulozStavSpanku() {
     localStorage.setItem("healthTrackerSleepTimer", JSON.stringify(stav));
 }
 
-// --- Inicializace ---
+// Inicializace
 
 function vygenerujKapky() {
     let htmlStruktura = "";
@@ -121,7 +121,7 @@ function inicializace() {
     renderCalendar(aktualniMesic, aktualniRok);
 }
 
-// --- Funkce Dashboardu ---
+// Funkce Dashboardu
 
 function formatujCisloSJednimDesetinnym(cislo) {
     return parseFloat(cislo).toFixed(1);
@@ -133,7 +133,7 @@ function aktualizujBarvySlideru() {
     let procentoSpanku = (hodnotaSpanku / 12) * 100;
 
     if (hodnotaSpanku >= 7 && hodnotaSpanku <= 9) {
-        barvaSpanku = "var(--good-color)"; // Zelená (Nahrazené movement za specializovanou dobrou proměnnou)
+        barvaSpanku = "var(--good-color)"; // Zelená
         sleepValueDisplay.style.color = "var(--good-color)";
     } else if (hodnotaSpanku < 6 || hodnotaSpanku > 10) {
         barvaSpanku = "var(--mood-color)"; // Červená
@@ -312,7 +312,7 @@ function nastavPosluchaceUdalosti() {
     });
 }
 
-// --- Funkce Kalendáře ---
+// Funkce Kalendáře
 
 function ziskejBarevnyHexNalady(nalada) {
     let cislo = parseInt(nalada);
@@ -330,12 +330,12 @@ function renderCalendar(mesic, rok) {
     // 1. Zjištění počtu dnů
     let pocetDnuVMesici = new Date(rok, mesic + 1, 0).getDate();
 
-    // 2. Zjištění začátku měsíce (Jaký je den v týdnu pro 1. políčko)
+    // 2. Zjištění začátku měsíce
     let prvniDenDate = new Date(rok, mesic, 1).getDay();
     // Odchylka pro české (evropské) počítání kalendáře
     let pocetPrazdnychZacatkem = (prvniDenDate + 6) % 7;
 
-    // 3. Vygenerování prázdných "odstazených" políček na začátek měsíce
+    // 3. Vygenerování prázdných/odsazených políček na začátek měsíce
     for (let i = 0; i < pocetPrazdnychZacatkem; i++) {
         htmlKalendar += `<div class="day-cell empty-day"></div>`;
     }
@@ -402,5 +402,5 @@ function renderCalendar(mesic, rok) {
     }
 }
 
-// Start aplikace
+// Start
 window.onload = function () { inicializace(); };
